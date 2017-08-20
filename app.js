@@ -148,7 +148,10 @@ export default class App extends Component {
             },()=>{
                 this.agregarPersona();
                 this.agregarPerro();
-                resolve('OK!');
+                if(realm.objects('Dog').length==1&&realm.objects('Person').length==1)
+                    resolve('OK!');
+                else
+                    reject();
             });
         } catch(e){
             reject();
@@ -169,7 +172,10 @@ export default class App extends Component {
                 personName: ''
             },()=>{
                 this.forceUpdate();
-                resolve('OK!');
+                if(realm.objects('Dog').length==0&&realm.objects('Person').length==0)
+                    resolve('OK!');
+                else
+                    reject();
             });
         } catch(e){
             reject();
